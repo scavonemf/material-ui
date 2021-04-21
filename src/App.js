@@ -1,25 +1,88 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  Typography,
+  AppBar,
+  CssBaseline,
+  Grid,
+  Toolbar,
+  Container,
+} from "@material-ui/core";
+import { PhotoCamera } from "@material-ui/icons";
+import Button from "@material-ui/core/Button";
 
-function App() {
+import useStyles from "./styles";
+import CardNew from "./components/card";
+
+const cards = [1, 2, 3, 4, 5, 6, 7];
+
+const App = () => {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <AppBar position="relative">
+        <Toolbar>
+          <PhotoCamera className={classes.icon} />
+          <Typography variant="h6">Photo Album</Typography>
+        </Toolbar>
+      </AppBar>
+      <main>
+        <div className={classes.container}>
+          <Container maxWidth="sm" style={{ marginTop: "22px" }}>
+            <Typography
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              Photo Album
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              This is a description for a Photo album. I'm tryng to make this
+              sentence as long as possiible to simulate a webside description
+            </Typography>
+            <div className={classes.buttons}>
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    See my photos
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    Secondary action
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
+          </Container>
+        </div>
+        <div style={{ backgroundColor: "#fafafa" }}>
+            <Container className={classes.cardGrid} maxWidth="md">
+              <Grid container spacing={4}>
+                {cards.map((card, index) => (
+                  <CardNew key={index} />
+                ))}
+              </Grid>
+            </Container>
+          </div>
+      </main>
+      <footer className={classes.footer}>
+        <Typography variant="h6" align="center" gutterBottom>
+          Footer
+        </Typography>
+        <Typography variant="subtitle1" align="center" color="textSecondary">
+          Something here to give the footer a purpose!
+        </Typography>
+      </footer>
+    </>
   );
-}
+};
 
 export default App;
